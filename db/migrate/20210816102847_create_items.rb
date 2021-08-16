@@ -10,6 +10,6 @@ class CreateItems < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_foreign_key :items, :gens
+    add_foreign_key :items, :genres
   end
 end
