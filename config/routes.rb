@@ -9,5 +9,8 @@ Rails.application.routes.draw do
     passwords: "customers/passwords",
     ragistrations: "customers/registrations"
   }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :admin do
+    resources :genres, except: [:show, :destroy, :new]
+  end
 end
