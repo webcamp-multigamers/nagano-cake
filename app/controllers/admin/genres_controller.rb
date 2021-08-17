@@ -17,7 +17,7 @@ class Admin::GenresController < ApplicationController
 
   def edit
     @genre = Genre.find(params[:id])
-    # adminではなかった時のレイダイレクト処理追加予定
+    # adminではなかった時のリダイレクト処理追加予定
   end
 
   def update
