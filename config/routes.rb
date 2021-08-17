@@ -5,9 +5,9 @@ Rails.application.routes.draw do
     registrations: 'admin/registrations'
   }
   devise_for :customers, controllers: {
-    sessions: "customer/sessions",
-    passwords: "customer/passwords",
-    ragistrations: "customer/registrations"
+    sessions: "public/sessions",
+    passwords: "public/passwords",
+    ragistrations: "public/registrations"
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
