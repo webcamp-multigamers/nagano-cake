@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
+  #カスタマーページのルーティング
+  get 'customer' => 'public/customers#show', as: "customer"
+  get 'customer/edit' => 'public/customers#edit', as: "customer_edit"
+
   devise_for :admins, controllers: {
     sessions: 'admin/sessions',
     passwords: 'admin/passwords',
