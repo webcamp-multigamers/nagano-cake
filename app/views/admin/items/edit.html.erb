@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <h3>商品編集</h3>
+  </div>
+  <div class="row">
+<div class="col-2"></div>
+      <div class="col-10">
+      <%= form_with model: @item, url:admin_item_path(@item.id), local:true do |f| %>
+  <div class="img-fluid">
+    <%= f.label :image, "商品画像" %>
+    <%= f.attachment_field :image %>
+  </div>
+  <div class="from-group">
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name, placeholder: "商品名" %>
+  </div>
+  <div class="from-group">
+    <%= f.label :introduction, "商品説明" %>
+    <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
+  </div>
+  <div class="from-group">
+    <%= f.label :genre, "ジャンル" %>
+    <%= f.collection_select(:genre_id, Genre.all, :id, :name, placeholder: "-- 選択してください --") %>
+  </div>　　　　　　　　　　　　　　　
+  <div class="from-group">
+    <%= f.label :price, "税抜価格" %>
+    <%= f.text_field :price, placeholder: "1000" %>円
+  </div>
+  <div class="from-group">
+    <%= f.label :is_sales_status, "販売ステータス" %>
+    <%= f.select :is_sales_status, {'販売中': true,'販売停止中': false}, required: true %>
+  </div>
+  <div class="actions">
+	  <%= f.submit "変更を保存", class: "btn btn-success pull-right" %>
+  </div>
+  <% end %>
+  </div>
+    </div>
+      </div>
