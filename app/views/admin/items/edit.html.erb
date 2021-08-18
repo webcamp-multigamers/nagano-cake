@@ -20,8 +20,8 @@
   </div>
   <div class="from-group">
     <%= f.label :genre, "ジャンル" %>
-    <%= f.collection_select(:genre_id, Item.all, :id, :name, placeholder: "-- 選択してください --") %>
-  </div>　　　　　　　　　　　　　　　<!-- Itemをgenreに変更-->
+    <%= f.collection_select(:genre_id, Genre.all, :id, :name, placeholder: "-- 選択してください --") %>
+  </div>　　　　　　　　　　　　　　　
   <div class="from-group">
     <%= f.label :price, "税抜価格" %>
     <%= f.text_field :price, placeholder: "1000" %>円

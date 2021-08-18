@@ -22,7 +22,7 @@
             <% end %>
           </td>
           <td> ¥<%= item.price.to_s(:delimited) %></td>
-          <td><%=  %></td>
+          <td><%= item.genre.name %></td>
           <td>
              <% if item.is_sales_status == true %>
 		           販売中

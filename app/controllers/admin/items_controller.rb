@@ -32,12 +32,12 @@ class Admin::ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @item = ITem.find(params[:id])
     @item.save
     redirect_to admin_items_path
-  end 
+  end
 
   private
   def item_params
