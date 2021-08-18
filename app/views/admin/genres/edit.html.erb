@@ -1,9 +1,12 @@
 <div class="container">
-  <h2 class="row">ジャンル一覧・追加仮</h2>
+  <h2 class="row">ジャンル編集仮</h2>
   <!--ジャンル編集フォーム-->
-  <div class="row">
-    <p class="col-3">ジャンル名</p>
-    <p class="col-4 offset-1">編集フォーム予定</p>
-    <p class="col-3 offset-1">保存ボタン予定</p>
+  <p>エラーの時の部分テンプレート記載予定</p>
+  <div class="col-7">
+    <%= form_with model: @genre, url:admin_genre_path, local:true, class: "row my-5 forminline mx-auto" do |f| %>
+      <strong class="col-3"><%= f.label :name, "ジャンル名" %></strong>
+      <%= f.text_field :name, class: "form-control col-5" %>
+      <%= f.submit "変更を保存", class: "btn btn-success col-3 offset-1" %>
+    <% end %>
   </div>
 </div>
