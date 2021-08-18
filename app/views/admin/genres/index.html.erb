@@ -1,20 +1,33 @@
 <div class="container">
-  <h2 class="row">ジャンル一覧・追加仮</h2>
-  <!--ジャンル追加フォーム-->
   <div class="row">
-    <%= form_with model: @genre, local:true do |f| %>
-      <%= f.label :name, "ジャンル名" %>
-      <%= f.text_field :name, class: "form-control" %>
-      <%= f.submit "新規登録", class: "btn btn-success" %>
-    <% end %>
+    <h2 class="col-4 text-center table-active">ジャンル一覧・追加仮</h2>
   </div>
+  <p>エラーの時の部分テンプレート記載予定</p>
+  <!--ジャンル追加フォーム-->
+  <div class="col-7">
+    <%= form_with model: @genre, url:admin_genres_path, local:true, class: "row my-5 form-inline mx-auto" do |f| %>
+      <strong class="col-3"><%= f.label :name, "ジャンル名" %></strong>
+      <%= f.text_field :name, placeholder: "ジャンル名", class: "form-control col-5" %>
+      <%= f.submit "新規登録", class: "btn btn-success col-3 offset-1" %>
+    <% end %>
   <!--ジャンル一覧テーブル-->
-  <table class="table table-hover">
-    <thead>
-      <th>ジャンル</th>
-    </thead>
-    <tbody>
-      <td>ジャンル1</td>
-    </tbody>
-  </table>
+    <div class="col-8">
+    <table class="table table-hover row">
+      <thead class="col-12">
+        <tr class="row">
+          <th class="table-active col-2"></th>
+          <th class="table-active col-10">ジャンル</th>
+        </tr>
+      </thead>
+      <tbody class="col-12">
+        <% @genres.each do |genre| %>
+        <tr class="row">
+          <td class="col-8"><%= genre.name %></td>
+          <td class="col-4"><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
 </div>
