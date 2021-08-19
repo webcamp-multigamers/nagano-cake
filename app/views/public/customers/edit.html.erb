@@ -1,0 +1,10 @@
+<h1>会員情報編集</h1>
+<div class="col-lg-8">
+  <table class="table table-borderless">
+    <%= form_with model:@my, local:true do |form| %>
+      <tbody>
+        <tr><td>氏名</td><td><%= form.text_field :last_name %></td></tr>
+      </tbody>
+    <%end%>
+  </table>
+</div>
