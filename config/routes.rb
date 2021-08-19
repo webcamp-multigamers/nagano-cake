@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy]
   end
-
+  
   scope module: :public do
     resources :items, only: [:index, :show]
   end
