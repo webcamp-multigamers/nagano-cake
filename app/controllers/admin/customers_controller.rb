@@ -15,7 +15,7 @@ class Admin::CustomersController < ApplicationController
 		@customer = Customer.find(params[:id])
 		if @customer.update(customer_params)
 			flash[:notice] = "You have updated book successfully."
-			redirect_to root_path
+			redirect_to admin_customer_path(@customer.id)
 		else
 			render :edit
 		end
