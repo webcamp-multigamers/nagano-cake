@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #カスタマーページのルーティング
   get 'customer' => 'public/customers#show', as: "customer"
   get 'customer/edit' => 'public/customers#edit', as: "customer_edit"
+  get 'admin' => 'admin/homes#top'
 
   devise_for :admins, controllers: {
     sessions: 'admin/sessions',
