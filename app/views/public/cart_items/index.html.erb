@@ -15,13 +15,15 @@
       </tr>
     </thead>
     <tbody class="col-12">
+      <% @cart_items.each do |cart| %>
       <tr class="row">
-        <td class="col-4">商品名予定</td>
-        <td class="col-2">単価(税込)予定</td>
-        <td class="col-2">数量予定</td>
+        <td class="col-4"><%= cart.name %></td>
+        <td class="col-2"><%= cart.price %></td>
+        <td class="col-2"><%= cart.cart_items.quantity %></td>
         <td class="col-2">小計予定</td>
         <td class="col-2 btn btn-danger">個別削除ボタン予定</td>
       </tr>
+      <% end %>
     </tbody>
   </table>
   <!--買い物を続ける・合計金額-->

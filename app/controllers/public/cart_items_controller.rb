@@ -1,12 +1,12 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
 
   def create
     @item = Item.find(params[:id])
     @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_user.id
+    @cart_item.customer_id = current_customer.id
     @cart_item.item_id = @item.id
     unless @cart_item.save
       render "public/items/show"
@@ -15,7 +15,7 @@ class Public::CartItemsController < ApplicationController
 
   def update
     cart_item = CartItem.find(params[:item_id])
-    if cart_item.customer_id == current_user.id
+    if cart_item.customer_id == current_customer.id
       cart_item.update(cart_item_prams)
       redirect_to cart_items_path
     end
@@ -23,14 +23,14 @@ class Public::CartItemsController < ApplicationController
 
   def destroy
     cart_item = CartItem.find(params[:item_id])
-    if cart_item.customer_id == current_user.id
+    if cart_item.customer_id == current_customer.id
       cart_item.destroy
       redirect_to cart_items_path
     end
   end
 
   def destroy_all
-    current_user.CartItem.destroy_all
+    current_customer.CartItem.destroy_all
   end
 
   private
