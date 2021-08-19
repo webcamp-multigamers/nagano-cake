@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :genres, except: [:show, :destroy, :new]
-    resources :items
+    resources :items, except: [:destroy]
   end
+
+  scope module: :public do
+    resources :items, only: [:index, :show]
+ 　　end
 end
