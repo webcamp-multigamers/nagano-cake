@@ -7,13 +7,13 @@
       <p><%= @item.name %>()</p>
       <p><%= @item.introduction %></p>
       <p></p>
-      <p>¥<%= @item.price.to_s(:delimited) %>(税込)</p>
+      <p>¥<%= (@item.price*1.1).round.to_s(:delimited) %>(税込)</p>
 
-        <%= form_with model: @cart_item, url: 'cart_items_path', method: :post, local: true do |f| %>
-            <%= f.number_field :quantity, min: 1, class: "pur-number" %>
-            <%= hidden_field_tag :item_id, @item.id %>
-            <%= f.submit "カートに入れる", class: "cart-button" %>
-          <% end %>
+      <%= form_with model: @cart_item, url:cart_items_path, local: true do |f| %>
+        <%= f.number_field :quantity, min: 1, class: "pur-number" %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.submit "カートに入れる", class: "cart-button" %>
+      <% end %>
     </div>
   </div>
 </div>

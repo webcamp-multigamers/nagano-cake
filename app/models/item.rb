@@ -5,4 +5,8 @@ class Item < ApplicationRecord
   validates  :name, :price, :genre_id, :introduction, presence: true
 
    validates :is_sales_status, inclusion: {in: [true, false]}
+
+   def taxin_price
+     (price*1.1).round
+   end
 end
