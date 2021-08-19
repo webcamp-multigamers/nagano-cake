@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
+  get 'admin' => 'admin/homes#top'
   #カスタマーページのルーティング
   # get 'customer' => 'public/customers#show', as: "customer"
   # get 'customer/edit' => 'public/customers#edit', as: "edit_customer"
@@ -24,7 +25,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :genres, except: [:show, :destroy, :new]
-    resources :items
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :items, except: [:destroy]
   end
 
   scope module: :public do
