@@ -19,9 +19,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, except: [:show, :destroy, :new]
     resources :items, except: [:destroy]
+    resources :orders, only: [:show, :update]
   end
 
   scope module: :public do
     resources :items, only: [:index, :show]
+    resources :orders, only: [:new, :show, :create, :index] do
+      collection do
+        post "check"
+        get "thanks"
+      end
+    end
   end
 end
