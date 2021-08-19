@@ -3,15 +3,14 @@ class ApplicationController < ActionController::Base
   # last_name, first_nameなど
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # ログイン後の遷移先設定（未実装）
-  # def after_sign_in_path_for(resource)
-  #   case resource
-  #   when Admin
-  #     # Adminログイン後の遷移先をpathで指定してください
-  #   when Customer
-  #     # Customerログイン後の遷移先をpathで指定してください
-  #   end
-  # end
+  def after_sign_in_path_for(resource)
+    case resource
+    when Admin
+      admin_top_path
+    when Customer
+      customer_path
+    end
+  end
 
   protected
 
