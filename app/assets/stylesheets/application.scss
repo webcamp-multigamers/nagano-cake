@@ -22,3 +22,15 @@
 .pagination {
   justify-content: center;
 }
+
+.header-image {
+  background-image: image-url("sweets.jpg");
+  background-size: cover;
+}
+
+.content {
+  min-height: calc(100vh - 70px);
+}
+.footer {
+  height: 50px;
+}

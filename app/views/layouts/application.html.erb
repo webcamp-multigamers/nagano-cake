@@ -10,11 +10,27 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <% if flash[:notice] %>
-      <p><%= flash[:notice] %></p>
-    <%end%>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+    <!--contentについてはcssで定義してあります。footerを最下部に配置するための定義です。-->
+    <div class="content">
+
+      <!--headetの定義-->
+      <header class="header">
+        <%= render 'layouts/header' %>
+      </header>
+
+      <!--フラッシュメッセージ表示領域-->
+      <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+      <%end%>
+
+      <%= yield %>
+    </div>
+
+    <!--footerは画面の最下部に配置します。（詳細はapplication.scss参照）-->
+    <footer class="footer">
+      <%= render 'layouts/footer' %>
+    </footer>
+
   </body>
+
 </html>
