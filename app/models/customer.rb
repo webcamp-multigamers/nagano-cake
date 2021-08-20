@@ -4,6 +4,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :addresses, dependent: :destroy
+
   validates :first_name, length:{minimum: 1, maximum: 10}
   validates :last_name, length:{minimum: 1, maximum: 10}
   validates :first_name_kana, length:{minimum: 1, maximum: 10}
