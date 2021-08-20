@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <table class="row my-3">
+        <thead class="col-12">
+          <tr class="row table-active">
+            <th class="col-6">商品名</th>
+            <th class="col-2">単価(税込)</th>
+            <th class="col-2">数量</th>
+            <th class="col-2">小計</th>
+          </tr>
+        </thead>
+        <tbody class="col-12">
+          <% @cart_items.each do |cart| %>
+          <tr class="row my-2">
+            <td class="col-2"><%= attachment_image_tag cart.item, :image, :fill, 50, 50, format: 'jpeg' %></td>
+            <td class="col-4"><strong><%= cart.item.name %></strong></td>
+            <td class="col-2"><%= cart.item.taxin_price.to_s(:delimited) %></td>
+            <td class="col-2"><%= cart.quantity %></td>
+            <td class="col-2"><%= (cart.item.taxin_price*cart.quantity).to_s(:delimited) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div clas="col-4">
+      <table class="row my-3">
+        <tbody class="col-12">
+          <tr class="row">
+            <td class="col-6 table-active">送料</th>
+            <td class="col-6"><%= Order.postage %></td>
+          </tr>
+          <tr class="row">
+            <td class="col-6 table-active">商品合計</th>
+            <td class="col-6"><%= @total.to_s(:delimited) %></td>
+          </tr>
+          <tr class="row">
+            <td class="col-6 table-active">請求金額</th>
+            <td class="col-6"><%= @total+Order.postage %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
