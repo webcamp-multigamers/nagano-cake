@@ -4,6 +4,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :addresses, dependent: :destroy
+
   validates :first_name, length:{minimum: 1, maximum: 10}
   validates :last_name, length:{minimum: 1, maximum: 10}
   validates :first_name_kana, length:{minimum: 1, maximum: 10}
@@ -20,4 +22,5 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (self.is_secede_frag == "有効")
   end
+  has_many :cart_items
 end

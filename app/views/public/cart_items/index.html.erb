@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row my-3">
+    <h2 class="col-8 table-active">ショッピングカート仮</h2>
+    <p class="col-4 text-right"><%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger" %></p>
+  </div>
+  <!--カート内テーブル一覧-->
+  <table class="row my-3">
+    <thead class="col-12">
+      <tr class="row table-active">
+        <th class="col-4">商品名</th>
+        <th class="col-2">単価(税込)</th>
+        <th class="col-2">数量</th>
+        <th class="col-2">小計</th>
+        <th class="col-2"></th>
+      </tr>
+    </thead>
+    <tbody class="col-12">
+      <% @cart_items.each do |cart| %>
+      <tr class="row my-2">
+        <td class="col-1"><%= attachment_image_tag cart.item, :image, :fill, 50, 50, format: 'jpeg' %></td>
+        <td class="col-3"><strong><%= cart.item.name %></strong></td>
+        <td class="col-2"><%= cart.item.taxin_price.to_s(:delimited) %></td>
+        <td class="col-2">
+        <%= form_with model: cart, url:cart_item_path(cart), local:true do |f| %>
+          <%= f.select :quantity, (1..10), selected: cart.quantity %>
+          <%= f.submit "変更", class: "btn btn-success" %>
+        <% end %>
+        </td>
+        <td class="col-2"><%= (cart.item.taxin_price*cart.quantity).to_s(:delimited) %></td>
+        <td class="col-2 text-center"><%= link_to "削除する", cart_item_path(cart), method: :delete, class: "btn btn-danger" %></td>
+      </tr>
+      <% end %>
+  <!--買い物を続ける・合計金額-->
+      <tr class="row my-3">
+        <td class="col-8"><%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %></td>
+        <td class="col-2 table-active">合計金額</th>
+        <td class="col-2"><%= @total.to_s(:delimited) %></td>
+      </tr>
+    </tbody>
+  </table>
+  <!--情報入力ページへの遷移-->
+  <div class="row my-3">
+    <p class="col-3 mx-auto text-center btn btn-success">情報入力画面に進む予定</p>
+  </div>
+</div>
