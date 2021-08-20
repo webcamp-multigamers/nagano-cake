@@ -22,4 +22,5 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (self.is_secede_frag == "有効")
   end
+  has_many :cart_items
 end

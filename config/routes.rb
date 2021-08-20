@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     resource :customer, only: [:show, :edit, :update]
     get "customer/secession" => "customers#secession", as:"secession_customer"
     patch "customer/secede" => "customers#secede", as:"secede_customer"
+    resources :items, only: [:index, :show]
+    resources :cart_items, except: [:show, :new, :edit] do
+      collection do
+        delete :destroy_all
+      end
+    end
     # アドレスページのルーティング
     resources :addresses, only: [:index, :destroy, :edit, :update, :create]
   end
@@ -30,7 +36,4 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
   end
 
-  scope module: :public do
-    resources :items, only: [:index, :show]
-  end
 end
