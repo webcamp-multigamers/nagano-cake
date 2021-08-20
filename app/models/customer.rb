@@ -17,10 +17,10 @@ class Customer < ApplicationRecord
 
 
 
-  enum is_secede_frag: {"退会": true, "有効": false }
+
   #　値が”退会”ならログイン不可能になる処理
   def active_for_authentication?
-    super && (self.is_secede_frag == "有効")
+    super && (self.is_secede_frag == false)
   end
   has_many :cart_items
 end
