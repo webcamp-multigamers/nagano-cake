@@ -15,6 +15,12 @@ Rails.application.routes.draw do
         delete :destroy_all
       end
     end
+    resources :orders, only: [:new, :show, :create, :index] do
+      collection do
+        post "check"
+        get "thanks"
+      end
+    end
     # アドレスページのルーティング
     resources :addresses, only: [:index, :destroy, :edit, :update, :create]
   end
@@ -34,6 +40,6 @@ Rails.application.routes.draw do
     resources :genres, except: [:show, :destroy, :new]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: [:destroy]
+    resources :orders, only: [:show, :update]
   end
-
 end
