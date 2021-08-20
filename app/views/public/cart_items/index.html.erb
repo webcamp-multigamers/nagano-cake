@@ -20,7 +20,12 @@
         <td class="col-1"><%= attachment_image_tag cart.item, :image, :fill, 50, 50, format: 'jpeg' %></td>
         <td class="col-3"><strong><%= cart.item.name %></strong></td>
         <td class="col-2"><%= cart.item.taxin_price.to_s(:delimited) %></td>
-        <td class="col-2"><%= cart.quantity %></td>
+        <td class="col-2">
+        <%= form_with model: cart, url:cart_item_path(cart), local:true do |f| %>
+          <%= f.select :quantity, (1..10), selected: cart.quantity %>
+          <%= f.submit "変更", class: "btn btn-success" %>
+        <% end %>
+        </td>
         <td class="col-2"><%= (cart.item.taxin_price*cart.quantity).to_s(:delimited) %></td>
         <td class="col-2 text-center"><%= link_to "削除する", cart_item_path(cart), method: :delete, class: "btn btn-danger" %></td>
       </tr>

@@ -6,6 +6,7 @@ class Item < ApplicationRecord
 
    validates :is_sales_status, inclusion: {in: [true, false]}
 
+# 税込価格表示のメソッド
    def taxin_price
      (price*1.1).round
    end
