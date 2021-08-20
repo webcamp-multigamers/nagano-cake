@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row mt-5">
+		<%= render 'public/homes/genres_search', genres: @genres %>
+		<div class="col-md-9">
+			<div class="py-5 bg-primary">画像です</div>
+			<div class="new-item">
+				<h3 class="font-weight-bold">新着商品</h3>
+				<div class="card-deck">
+					<% @items.earh do |item| %>
+						<div class="card">
+							<%= image_tag class: 'card-img-top' %>
+							<div class="card-body">
+								
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
