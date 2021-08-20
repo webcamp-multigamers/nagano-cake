@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
-  #カスタマーページのルーティング
-  # get 'customer' => 'public/customers#show', as: "customer"
-  # get 'customer/edit' => 'public/customers#edit', as: "edit_customer"
-  # patch "customer/update" => "public/customers#update", as: "update_customer"
+
+  get 'admin' => 'admin/homes#top'
+
   scope module: :public do
+    # カスタマーページのルーティング
     resource :customer, only: [:show, :edit, :update]
     get "customer/secession" => "customers#secession", as:"secession_customer"
     patch "customer/secede" => "customers#secede", as:"secede_customer"
@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         delete :destroy_all
       end
     end
+    # アドレスページのルーティング
+    resources :addresses, only: [:index, :destroy, :edit, :update, :create]
   end
 
   devise_for :admins, controllers: {
@@ -30,7 +32,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :genres, except: [:show, :destroy, :new]
-    resources :items
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :items, except: [:destroy]
   end
 
 end

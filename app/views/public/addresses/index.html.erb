@@ -1,0 +1,39 @@
+<h1>配送先一覧/登録</h1><br>
+<%= form_with model:@address, local:true do |form| %>
+<!--画面上部　配送先新規登録フォーム-->
+<div class="col-lg-10">
+  <table class="table border-less">
+    <tbody>
+      <tr><td>郵便番号（ハイフンなし）</td><td><%= form.text_field :postal_code %></td></tr>
+      <tr><td>住所</td><td><%= form.text_field :address, :size => "50x10" %></td></tr>
+      <tr><td>宛名</td><td><%= form.text_field :name %></td><td><%= form.submit "新規登録", class:"btn btn-success" %></td></tr>
+    </tbody>
+  </table>
+  <%end%>
+</div>
+
+<!--画面下部　配送先登録住所一覧-->
+<!--追加アドレスの登録が０件なら、表を表示させないための処理-->
+<% if @addresses.count == 0 %>
+  <h4 class="text-center">追加でアドレスの登録ができます。上のフォームからご入力ください。</h4>
+<%else%>
+<!--アドレスが１件でもあれば表示される-->
+  <h4 class="text-center">追加された配送先</h4>
+  <div class="col-lg-9">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-active"><th>郵便番号</th><th>住所</th><th>宛名</th><th></th></tr>
+      </thead>
+      <% @addresses.each do |customer| %>
+        <tbody>
+          <tr>
+            <td><%= customer.postal_code %></td>
+            <td><%= customer.address %></td>
+            <td><%= customer.name %></td>
+            <td><%= link_to "編集する", edit_address_path(customer.id), class:"btn btn-success" %><%= link_to "削除する", address_path(customer.id), method: :delete, class:"btn btn-danger" %></td>
+          </tr>
+        </tbody>
+      <%end%>
+    </table>
+  </div>
+<%end%>
