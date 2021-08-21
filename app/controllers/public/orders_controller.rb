@@ -21,6 +21,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
+    if params["customer_address"].
+      @customer = Customer.find([:current_customer])
+
+    end
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
   end
@@ -30,6 +34,6 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :address, :postal_code, :payment)
+    params.require(:order).permit(:name, :address, :postal_code, :payment, :total_price)
   end
 end
