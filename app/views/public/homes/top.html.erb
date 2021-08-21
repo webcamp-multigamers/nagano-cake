@@ -9,7 +9,7 @@
 				<div class="card-deck">
 					<% @items.each do |item| %>
 						<div class="card">
-							<%= attachment_image_tag item, :image, class: 'card-img-top' %>
+							<%= attachment_image_tag item, :image, :fill, 300,300, format:'jpeg', class: 'card-img-top' %>
 							<div class="card-body">
 								<h5 class="card-title"><%= item.name %></h5>
 								<h6 class="card-subtitle text-muted"><%= item.genre.name %></h6>
