@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
-  before_action :admin_signin, only: [:edit, :update]
+  before_action :admin_not_signin
+
   def index
     @genre = Genre.new
     @genres = Genre.all
@@ -21,9 +22,11 @@ class Admin::GenresController < ApplicationController
   end
 
   def edit
+    @genre = Genre.find(params[:id])
   end
 
   def update
+    @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
       redirect_to admin_genres_path
     else
@@ -32,14 +35,6 @@ class Admin::GenresController < ApplicationController
   end
 
   private
-
-  def admin_signin
-    if admin_signed_in?
-      @genre = Genre.find(params[:id])
-    else
-      redirect_to request.referer
-    end
-  end
 
   def genre_params
     params.require(:genre).permit(:name)

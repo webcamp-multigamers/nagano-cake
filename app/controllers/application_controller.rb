@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
     :first_name, :last_name_kana, :first_name_kana, :postal_code,
     :address, :telephone_number])
   end
+
+  def admin_not_signin
+    unless admin_signed_in?
+      redirect_to root_path
+    end
+  end
+
 end
