@@ -5,8 +5,8 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    if @oder.save
-      redirect_to orders_check
+    if @order.save
+      redirect_to check_orders_path
     else
       render :new
     end
@@ -21,6 +21,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
   end
 
   def thanks
@@ -28,6 +30,6 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :address, :postal_code, :payment_integer)
+    params.require(:order).permit(:name, :address, :postal_code, :payment)
   end
 end

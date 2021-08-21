@@ -9,7 +9,7 @@
           <% end %>
        </div>
        <p><%= item.name %></p>
-       <p>¥<%= (item.price).to_s(:delimited) %></p>
+       <p>¥<%= item.taxin_price.to_s(:delimited) %></p>
       <% end %>
       <div class="text-center">
         <%= paginate @items %>
