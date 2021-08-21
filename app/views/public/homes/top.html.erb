@@ -1,24 +1,12 @@
 <div class="container">
 	<div class="row mt-5">
 		<%= render 'public/homes/genres_search', genres: @genres %>
-		<div class="col-md-9">
+		<div class="col-9">
 			<!--画像を入れてください-->
 			<div class="py-5 bg-primary">画像です</div>
 			<div class="new-item">
 				<h3 class="font-weight-bold">新着商品</h3>
-				<div class="card-deck">
-					<% @items.each do |item| %>
-						<div class="card">
-							<%= attachment_image_tag item, :image, :fill, 300,300, format:'jpeg', class: 'card-img-top' %>
-							<div class="card-body">
-								<h5 class="card-title"><%= item.name %></h5>
-								<h6 class="card-subtitle text-muted"><%= item.genre.name %></h6>
-								<p class="card-text"><%= item.introduction.truncate(20) %></p>
-								<%= link_to "商品ページへ", item_path(item) %>
-							</div>
-						</div>
-					<% end %>
-				</div>
+				<%= render 'public/homes/card_deck', items: @items %>
 				<%= link_to "すべての商品を見る＞", items_path, class: 'float-right mt-2' %>
 			</div>
 		</div>
