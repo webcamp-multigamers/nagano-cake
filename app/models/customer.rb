@@ -23,4 +23,5 @@ class Customer < ApplicationRecord
     super && (self.is_secede_frag == false)
   end
   has_many :cart_items
+  has_many :orders
 end
