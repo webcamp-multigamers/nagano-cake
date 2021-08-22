@@ -4,13 +4,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     @order = current_customer.orders.new(order_params)
     if @order.save
       redirect_to thanks_orders_path
     else
       render :new
     end
+    current_customer.cart_items.destroy_all
   end
 
   def index
@@ -22,7 +22,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
-    binding.pry
     @order = Order.new(order_params)
     if params[:order][:address_number] == "1"
       @order.name = "#{current_customer.first_name}#{current_customer.last_name}"
