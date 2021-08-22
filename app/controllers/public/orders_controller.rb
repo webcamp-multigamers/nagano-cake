@@ -4,13 +4,23 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    cart_items = current_customer.cart_items.all
+    order_item = OrderItem.new
     @order = current_customer.orders.new(order_params)
     if @order.save
-      redirect_to thanks_orders_path
+      cart_items.each do |cart|
+        order_item.order_quantity = cart.quantity
+        order_item.price = cart.item.taxin_price
+        order_item.order_id = @order.id
+        order_item.item_id = cart.item_id
+      end
+      if order_item.save
+        redirect_to thanks_orders_path
+        current_customer.cart_items.destroy_all
+      end
     else
       render :new
     end
-    current_customer.cart_items.destroy_all
   end
 
   def index
@@ -40,7 +50,6 @@ class Public::OrdersController < ApplicationController
     else
       render :new
     end
-
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
   end

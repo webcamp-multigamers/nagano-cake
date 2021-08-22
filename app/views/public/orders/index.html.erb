@@ -16,7 +16,7 @@
       <tr class="row text-align-center">
         <td class="col-1 p-0"><%= order.created_at.strftime("%Y/%m/%d") %></td>
         <td class="col-5 p-0"><%= "〒#{order.postal_code}" %></br><%= order.address %></br><%= order.name %></td>
-        <td class="col-2 p-0">注文商品予定</td>
+        <td class="col-2 p-0"><%= order.order_items.order_quantity %></td>
         <td class="col-1 p-0"><%= order.total_price %></td>
         <td class="col-1 p-0"><%= order.order_status %></td>
         <td class="col-2 text-center p-0"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
