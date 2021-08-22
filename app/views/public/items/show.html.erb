@@ -8,11 +8,16 @@
       <p><%= @item.introduction %></p>
       <p></p>
       <p>¥<%= @item.taxin_price.to_s(:delimited) %>(税込)</p>
-
-      <%= form_with model: @cart_item, url:cart_items_path, local: true do |f| %>
-        <%= f.select :quantity, (1..10), prompt: "個数選択" %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.submit "カートに入れる", class: "btn btn-success" %>
+      <% if customer_signed_in? %>
+        <% unless current_customer.cart_items.exists?(item_id: @item) %>
+          <%= form_with model: @cart_item, url:cart_items_path, local: true do |f| %>
+            <%= f.select :quantity, (1..10), prompt: "個数選択" %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
+            <%= f.submit "カートに入れる", class: "btn btn-success" %>
+          <% end %>
+        <% else %>
+        <%= link_to "カートから出す", cart_item_path(CartItem.find_by(customer_id: current_customer.id, item_id: @item)), method: :delete, class: "btn btn-danger" %>
+        <% end %>
       <% end %>
     </div>
   </div>
