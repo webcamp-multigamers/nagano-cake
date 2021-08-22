@@ -6,7 +6,7 @@ class CartItem < ApplicationRecord
   validates :item_id, presence: true
   validates :quantity, presence: true
 
-# 
+# カート一覧で合計金額を出すためのメソッドです
   def sum_price
     item.taxin_price * quantity
   end
