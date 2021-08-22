@@ -1,34 +1,30 @@
 <div class="container">
-  <div class="row">
-    <h2>注文情報詳細</h2>
-  </div>
-
-  <div class="row">
-    <table>
+  <h3 class="row my-3 table-active">注文履歴詳細</h3>
+  <table class="row table table-bordered">
       <tr>
         <th>購入者</th>
         <%= link_to do %>
-          <td>aaa</td>
+          <td><%= @order.customer.last_name %> <%= @order.member.first_name %></td>
         <% end %>
       </tr>
       <tr>
         <th>注文日</th>
-        <td>aaa</td>
+        <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
       </tr>
       <tr>
         <th>配送先</th>
-        <td>aaa</td>
+        <td>〒<%= @order.postal_code%> <%= @order.address%><br>
+        <%= @order.naem %></td>
       </tr>
       <tr>
         <th>支払方法</th>
-        <td>aaa</td>
+        <td><%= @%></td>
       </tr>
       <tr>
         <th>注文ステータス</th>
         <td>aaa</td>
       </tr>
     </table>
-  </div>
   <div class="row">
     <div class="col-10">
         <table class="table">
