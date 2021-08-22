@@ -1,25 +1,27 @@
 <div class="container">
-  <h3 class="row my-3 table-active">注文履歴一覧</h3>
+  <div class="row">
+    <h3 class="col-3 my-3 text-center table-active">注文履歴一覧</h3>
+  </div>
   <table class="row table table-bordered">
-    <thead class="col-12">
-      <tr class="row">
-        <th class="col-1">注文日</th>
-        <th class="col-5">配送先</th>
-        <th class="col-1">注文商品</th>
-        <th class="col-1">支払い金額</th>
-        <th class="col-2">ステータス</th>
-        <th class="col-2">注文詳細</th>
-      </tr>
-    </thead>
     <tbody class="col-12">
-      <tr class="row">
-        <td class="col-1"></td>
-        <td class="col-5"></td>
-        <td class="col-1"></td>
-        <td class="col-1"></td>
-        <td class="col-2"></td>
-        <td class="col-2 btn btn-primary btn-sm"></td>
+      <tr class="row table-active">
+        <td class="col-1 px-0">注文日</td>
+        <td class="col-5 px-0">配送先</td>
+        <td class="col-2 px-0">注文商品</td>
+        <td class="col-1 px-0">支払い金額</td>
+        <td class="col-1 px-0">ステータス</td>
+        <td class="col-2 px-0">注文詳細</td>
       </tr>
+      <% @orders.each do |order| %>
+      <tr class="row text-align-center">
+        <td class="col-1 p-0"><%= order.created_at.strftime("%Y/%m/%d") %></td>
+        <td class="col-5 p-0"><%= "〒#{order.postal_code}" %></br><%= order.address %></br><%= order.name %></td>
+        <td class="col-2 p-0">注文商品予定</td>
+        <td class="col-1 p-0"><%= order.total_price %></td>
+        <td class="col-1 p-0"><%= order.order_status %></td>
+        <td class="col-2 text-center p-0"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
+      </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

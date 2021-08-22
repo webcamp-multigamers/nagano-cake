@@ -10,6 +10,7 @@ class Public::OrdersController < ApplicationController
     else
       render :new
     end
+    current_customer.cart_items.destroy_all
   end
 
   def index
