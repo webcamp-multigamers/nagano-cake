@@ -1,43 +1,48 @@
 <div class="container">
+  <h2 class="row">注文情報入力</h2>
   <div class="row">
-    <h2>注文情報入力</h2>
-  </div>
-  <div class="row">
-    <%= form_with model: @order, url:check_orders_path, method: :post, local: true do |f| %>
+    <%= form_with model: @order, url: check_orders_path, local: true do |f| %>
+    <div class="col-12">
       <b>支払い方法</b>
       <div>
-        <%= f.radio_button :payment, 1 %>
-        <%= f.label :payment, "クレジットカード", value: 1, style: "display: inline-block;" %><br>
-        <%= f.radio_button :payment, 0 %>
-        <%= f.label :payment, "銀行振込", value: 0, style: "display: inline-block;" %>
+        <%= f.radio_button :payment, "クレジットカード" %>
+        <%= f.label :payment, "クレジットカード", value: "クレジットカード" %></br>
+        <%= f.radio_button :payment, "銀行振込" %>
+        <%= f.label :payment, "銀行振込", value: "銀行振込" %>
       </div>
+    </div>
+    <div class="col-12">
       <b>配送先</b>
       <div>
-        <%= f.radio_button :address_number,1 %>
-        <%= f.label :address_number, "住所", value: 1, style: "display: inline-block;" %>
-        <%= "#{current_customer.postal_code}" %>
-        <%= "#{current_customer.address}" %>
-        <%= "#{current_customer.last_name}" %>
-        <%= "#{current_customer.first_name}" %>
+        <%= f.radio_button :address_number, 1 %>
+        <%= f.label :address_number_1 do %>
+        <%= "ご自身の住所" %>
+        <%= "〒#{current_customer.postal_code}#{current_customer.address}#{current_customer.last_name}#{current_customer.first_name}" %>
+        <% end %>
       </div>
       <div>
         <%= f.radio_button :address_number, 2 %>
-        <%= f.label :address_numder, "登録済み住所から選択", value: 2, style: "display: inline-block;" %><br>
-        <%= f.collection_select :address, Address.where(customer_id: current_customer.id), :id, :address_all, prompt: "選択してください"%><br>
+        <%= f.label :address_number do %>
+        <%= "登録先の住所" %>
+        <%= f.collection_select(:registered, current_customer.addresses.all, :id, :select_address, placeholder: "-- 選択してください --") %>
+        <% end %>
       </div>
       <div>
         <%= f.radio_button :address_number, 3 %>
-        <%= f.label :address_number, "新しいお届け先", value: 3, style: "display: inline-block;" %><br>
-        <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-        <%= f.text_field :postal_code %><br>
-        <%= f.label :address, "住所" %>
-        <%= f.text_field :address %><br>
-        <%= f.label :name, "宛名" %>
-        <%= f.text_field :name %>
-      </div>
-      <div>
-         <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+        <%= f.label :address_number_3, "新しいお届け先" %>
+        <div>
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+          <%= f.text_field :postal_code, placeholder: "0000000" %></br>
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, size: 50, placeholder: "東京都渋谷区代々木神園町0-0" %></br>
+          <%= f.label :name, "宛名" %>
+          <%= f.text_field :name, placeholder: "令和道子" %>
+        </div>
       </div>
     </div>
-  <% end %>
+    <div class="col-12 text-center">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
 </div>

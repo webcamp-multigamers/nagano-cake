@@ -1,4 +1,6 @@
 class Admin::CustomersController < ApplicationController
+  before_action :admin_not_signin
+  
 	def index
 		@customers = Customer.page(params[:page]).per(10)
 	end
