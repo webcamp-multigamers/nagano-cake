@@ -7,17 +7,13 @@ class Admin::GenresController < ApplicationController
   end
 
   def create
-    if admin_signed_in?
-      @genre = Genre.new(genre_params)
-      if @genre.save
-        redirect_to request.referer
-      else
-        @genre = Genre.new
-        @genres = Genre.all
-        render :index
-      end
-    else
+    @genre = Genre.new(genre_params)
+    if @genre.save
       redirect_to request.referer
+    else
+      @genre = Genre.new
+      @genres = Genre.all
+      render :index
     end
   end
 
