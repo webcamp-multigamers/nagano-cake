@@ -2,7 +2,13 @@
   <div class="row mt-5 row-cols-">
     <%= render 'public/homes/genres_search', genres: @genres %>
     <div class="col-9">
-      <h3>商品一覧</h3><p>(全<%= @quantity %>件)</p>
+      <% if @genre.present? %>
+        <h3><%= @genre.name %>一覧</h3><p>(全<%= @quantity %>件)</p>
+      <% elsif @search_word.present? %>
+        <h3>"<%= @search_word %>" の検索結果</h3><p>(全<%= @quantity %>件)</p>
+      <% else %>
+        <h3>商品一覧</h3><p>(全<%= @quantity %>件)</p>
+      <% end %>
       <%= render 'public/homes/card_deck', items: @items %>
       <div class="text-center">
         <%= paginate @items %>
