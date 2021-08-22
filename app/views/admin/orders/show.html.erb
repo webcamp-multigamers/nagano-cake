@@ -1,34 +1,36 @@
 <div class="container">
-  <div class="row">
-    <h2>注文情報詳細</h2>
-  </div>
-
-  <div class="row">
-    <table>
+  <h3 class="row my-3 table-active">注文履歴詳細</h3>
+  <table class="row table table-bordered">
       <tr>
         <th>購入者</th>
         <%= link_to do %>
-          <td>aaa</td>
+          <td><%= @order.customer.last_name %> <%= @order.customer.first_name %></td>
         <% end %>
       </tr>
       <tr>
         <th>注文日</th>
-        <td>aaa</td>
+        <td><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
       </tr>
       <tr>
         <th>配送先</th>
-        <td>aaa</td>
+        <td>〒<%= @order.postal_code%> <%= @order.address%><br>
+        <%= @order.name %></td>
       </tr>
       <tr>
         <th>支払方法</th>
-        <td>aaa</td>
+        <td><%= @order.payment%></td>
       </tr>
       <tr>
         <th>注文ステータス</th>
-        <td>aaa</td>
+        <td>
+          <% form_with model: @order, url: admin_order_path, local: true do |f| %>
+            <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"]%>
+            <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
+          <% end %>
+        </td>
       </tr>
     </table>
-  </div>
+    <!-- 以下は出来次第作成-->
   <div class="row">
     <div class="col-10">
         <table class="table">
