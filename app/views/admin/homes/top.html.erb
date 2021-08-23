@@ -12,12 +12,13 @@
     <% @orders.each do |order|%>
       <tbody class="col-12">
         <tr class="row">
-          <td class="col-3"><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'), admin_order_path(order) %></td>
+          <td class="col-3"><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %></td>
           <td class="col-3"><%= order.name %></td>
-          <td class="col-3"><%= order.ordered_items.sum(quantity) %></td>
-          <td class="col-3"><%= order.order_status class: "btn btn-primary btn-sm" %></td>
+          <td class="col-3"><%#= order.ordered_items.sum(:quantity) %></td>
+          <td class="col-3"><%#= order.order_status class: "btn btn-primary btn-sm" %></td>
         </tr>
       </tbody>
     <% end %>
   </table>
+  <%= paginate @order %>
 </div>

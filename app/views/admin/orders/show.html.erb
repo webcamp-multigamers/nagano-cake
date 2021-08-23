@@ -23,18 +23,17 @@
       <tr>
         <th>注文ステータス</th>
         <td>
-          <% form_with model: @order, url: admin_order_path, local: true do |f| %>
+          <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
             <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"]%>
             <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
           <% end %>
         </td>
       </tr>
     </table>
-    <!-- 以下は出来次第作成-->
-  <div class="row">
-    <div class="col-10">
+    <div class="row">
+      <div class="col-10">
         <table class="table">
-          <thead>
+          <thead class="col-12" >
             <tr>
               <th>商品名</th>
               <th>単価(税込)</th>
@@ -43,36 +42,38 @@
               <th>制作ステータス</th>
               <th></th>
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody class="col-12">
+            <% @order_items.each do |order_item| %>
               <tr>
-              <td>aaa</td>
-              <td>aaa</td>
-              <td>aaa</td>
-              <td>aaa</td>
-              <td>aaa</td>
-              <td>aaa</td>
+                <td><%= Item.find(order_item.item_id).name %></td>
+                <td><%= order_item.item.taxin_price.to_s(:delimited) %></td>
+                <td><%= order_item.quantity %></td>
+                <td>aaa</td>
+                <td><%= order_item.price %></td>
+                <td>aaa</td>
               </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="clo-2">
-         <table>
-           <tr>
-             <th>商品合計</th>
-             <td>aaa</td>
-           </tr>
-           <tr>
-             <th>送料</th>
-             <td>aaa</td>
-           </tr>
-           <tr>
-             <th>請求金額合計</th>
-             <td>aaa</td>
-           </tr>
-         </table>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+          <div class="clo-2">
+           <table>
+             <tr>
+               <th>商品合計</th>
+               <td>aaa</td>
+             </tr>
+             <tr>
+               <th>送料</th>
+               <td><%= @order.postage %></td>
+             </tr>
+             <tr>
+               <th>請求金額合計</th>
+               <td><%= @order.postage %></td>
+             </tr>
+           </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
