@@ -2,9 +2,7 @@ class CartItem < ApplicationRecord
   belongs_to :customer
   belongs_to :item
 
-  validates :customer_id, presence: true
-  validates :item_id, presence: true
-  validates :quantity, presence: true
+  validates :customer_id, :item_id, :quantity, presence: true
 
 # カート一覧で合計金額を出すためのメソッドです
   def sum_price

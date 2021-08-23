@@ -60,7 +60,7 @@
         <tr>
           <td><%= Item.find(order_item.item_id).name %></td>
           <td><%= order_item.price %></td>
-          <td><%= order_item.quantity %></td>
+          <td><%= order_item.order_quantity %></td>
           <td><%= (Item.find(order_item.item_id).taxin_price)*(order_item.order_quantity) %></td>
         </tr>
         <% end %>

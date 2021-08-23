@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -20,7 +20,7 @@
 
       <!--フラッシュメッセージ表示領域-->
       <% if flash[:notice] %>
-        <p><%= flash[:notice] %></p>
+        <p class="bg-info text-center text-light notice"><%= flash[:notice] %></p>
       <%end%>
 
       <%= yield %>

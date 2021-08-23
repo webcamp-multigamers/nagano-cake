@@ -14,9 +14,20 @@ class Public::ItemsController < ApplicationController
       @quantity = Item.count
     end
   end
+
   def show
     @item = Item.find(params[:id])
+    @cart_in_count = @item.cart_items.count
+    @order_count = @item.order_items.count
     @cart_item = CartItem.new
     @genres = Genre.all
+
+    if @order_count >= 1 && @cart_in_count >= 1
+      flash.now[:notice] = "この商品は、#{@cart_in_count}人が購入予定で、#{@order_count}回注文がありました！"
+    elsif @order_count >= 1
+      flash.now[:notice] = "この商品は、#{@order_count}回注文がありました！"
+    elsif @cart_in_count >= 1
+      flash.now[:notice] = "この商品は、#{@cart_in_count}人が購入予定です！"
+    end
   end
 end

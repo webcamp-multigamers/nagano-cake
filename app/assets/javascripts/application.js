@@ -17,5 +17,36 @@
 
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+// require turbolinks
 //= require_tree .
+
+// カードをホバーしたときに文字を拡大する機能
+$(function mouseover(){
+    var mouse_on = {
+
+      paddingTop: 10,
+      paddingLeft: 10,
+      paddingRight: 10,
+  }
+  //mouseout時の値
+  var mouse_off = {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  }
+
+  $(".card").hover(function(){
+    $(this).animate(mouse_on, 200);
+  } ,function(){
+    $(this).animate(mouse_off, 200);
+  });
+});
+
+// noticeの表示に動きを作る
+$(function(){
+  $('.notice').delay(500).slideDown();
+});
+$(function(){
+  $('.notice').delay(5000).slideUp();
+});

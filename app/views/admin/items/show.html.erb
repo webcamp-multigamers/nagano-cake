@@ -3,10 +3,10 @@
 	  <h3 class="row my-3 table-active">商品詳細</h3>
 	</div>
   <div class="row">
-    <div class="col-4">
+    <div class="col-3 offset-1">
       <%= attachment_image_tag @item, :image, :fill, 200, 200, format: 'jpeg' %>
     </div>
-    <div class="col-8">
+    <div class="col-7 offset-1">
       <p>
         商品名
         <%= @item.name%>
