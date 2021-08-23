@@ -4,21 +4,31 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
     if @order.save
+      cart_items.each do |cart|
+        order_item = OrderItem.new
+        order_item.order_quantity = cart.quantity
+        order_item.price = cart.item.taxin_price
+        order_item.order_id = @order.id
+        order_item.item_id = cart.item_id
+        order_item.save
+      end
       redirect_to thanks_orders_path
+      current_customer.cart_items.destroy_all
     else
       render :new
     end
-    current_customer.cart_items.destroy_all
   end
 
   def index
-    @orders = Order.all.page(params[:page]).per(10)
+    @orders = current_customer.orders.all.page(params[:page]).per(10)
   end
 
   def show
     @order = Order.find(params[:id])
+    @order_items = OrderItem.where(order_id: @order)
   end
 
   def check
@@ -40,7 +50,6 @@ class Public::OrdersController < ApplicationController
     else
       render :new
     end
-
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
   end

@@ -22,6 +22,6 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (self.is_secede_frag == false)
   end
-  has_many :cart_items
-  has_many :orders
+  has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 end
