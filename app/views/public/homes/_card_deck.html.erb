@@ -9,7 +9,7 @@
   			  <%= link_to item_path(item) do %>
 	          <p class="card-title text-dark"><b><%= item.name %></b></p>
 	        <% end %>
-	        <p>￥<%= item.price %></p>
+	        <p>￥<%= item.price.to_s(:delimited) %></p>
   			</div>
   		</div>
 	  </div>
