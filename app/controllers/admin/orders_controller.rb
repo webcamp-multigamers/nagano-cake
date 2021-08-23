@@ -16,7 +16,7 @@ class Admin::OrdersController < ApplicationController
   #     order.order_status == "制作中"
   #     order.update
   # 	end
-  
+
   end
 
 
@@ -26,6 +26,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def order_item_params
-    params.require(:order).permit(:create_status)
+    params.require(:order_item).permit(:create_status)
   end
 end

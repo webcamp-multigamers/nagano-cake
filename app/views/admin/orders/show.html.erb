@@ -51,8 +51,9 @@
                 <td><%= order_item.order_quantity %></td>
                 <td><%= (Item.find(order_item.item_id).taxin_price)*(order_item.order_quantity) %></td>
                 <td>
-                  <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
-                    <%= f.select :create_status,["着手不可","製作待ち","製作中","製作完了"] %>
+                  <%= form_with model: order_item, url: admin_order_path, local: true do |f| %>
+                    <%#= f.collection_select(:c_create, order_item, :create_status, ["着手不可","製作待ち","製作中","製作完了"]) %>
+                    <%= f.select :create_status,["着手不可","製作待ち","製作中","製作完了"], selected: order_item.create_status %>
                     <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
                   <% end %>
                 </td>
