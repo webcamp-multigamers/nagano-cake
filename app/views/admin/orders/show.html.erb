@@ -24,7 +24,7 @@
         <th>注文ステータス</th>
         <td>
           <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
-            <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"]%>
+            <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"] %>
             <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
           <% end %>
         </td>
@@ -33,7 +33,7 @@
     <div class="row">
       <div class="col-10">
         <table class="table">
-          <thead class="col-12" >
+          <thead class="col-10" >
             <tr>
               <th>商品名</th>
               <th>単価(税込)</th>
@@ -43,15 +43,19 @@
               <th></th>
             </tr>
           </thead>
-          <tbody class="col-12">
+          <tbody class="col-10">
             <% @order_items.each do |order_item| %>
               <tr>
                 <td><%= Item.find(order_item.item_id).name %></td>
                 <td><%= order_item.item.taxin_price.to_s(:delimited) %></td>
-                <td><%= order_item.quantity %></td>
-                <td>aaa</td>
-                <td><%= order_item.price %></td>
-                <td>aaa</td>
+                <td><%= order_item.order_quantity %></td>
+                <td><%= (Item.find(order_item.item_id).taxin_price)*(order_item.order_quantity) %></td>
+                <td>
+                  <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
+                    <%= f.select :create_status,["着手不可","製作待ち","製作中","製作完了"] %>
+                    <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
@@ -61,7 +65,7 @@
            <table>
              <tr>
                <th>商品合計</th>
-               <td>aaa</td>
+               <td><%= @order.total_price-@order.postage %></td>
              </tr>
              <tr>
                <th>送料</th>
@@ -69,7 +73,7 @@
              </tr>
              <tr>
                <th>請求金額合計</th>
-               <td><%= @order.postage %></td>
+               <td><%= @order.total_price %></td>
              </tr>
            </table>
           </div>
