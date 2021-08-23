@@ -1,6 +1,6 @@
 <div class="container">
   <h3 class="row my-3 table-active">注文履歴詳細</h3>
-  <table class="row table table-bordered">
+  <table class="row table table-borderless">
       <tr>
         <th>購入者</th>
         <%= link_to do %>
@@ -24,7 +24,7 @@
         <th>注文ステータス</th>
         <td>
           <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
-            <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"] %>
+            <%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"], selected: @order.order_status %>
             <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
           <% end %>
         </td>
@@ -32,7 +32,7 @@
     </table>
     <div class="row">
       <div class="col-10">
-        <table class="table">
+        <table class="table active">
           <thead class="col-10" >
             <tr>
               <th>商品名</th>
@@ -51,8 +51,7 @@
                 <td><%= order_item.order_quantity %></td>
                 <td><%= (Item.find(order_item.item_id).taxin_price)*(order_item.order_quantity) %></td>
                 <td>
-                  <%= form_with model: order_item, url: admin_order_path, local: true do |f| %>
-                    <%#= f.collection_select(:c_create, order_item, :create_status, ["着手不可","製作待ち","製作中","製作完了"]) %>
+                  <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
                     <%= f.select :create_status,["着手不可","製作待ち","製作中","製作完了"], selected: order_item.create_status %>
                     <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
                   <% end %>
@@ -62,23 +61,23 @@
           </tbody>
         </table>
       </div>
-          <div class="clo-2">
-           <table>
-             <tr>
-               <th>商品合計</th>
-               <td><%= @order.total_price-@order.postage %></td>
-             </tr>
-             <tr>
-               <th>送料</th>
-               <td><%= @order.postage %></td>
-             </tr>
-             <tr>
-               <th>請求金額合計</th>
-               <td><%= @order.total_price %></td>
-             </tr>
-           </table>
-          </div>
+      <div class="clo-2">
+        <table class="table-borderless d-flex align-items-end">
+          <tr>
+             <th>商品合計</th>
+             <td><%= (@order.total_price-@order.postage).to_s(:delimited) %>円</td>
+           </tr>
+           <tr>
+             <th>送料</th>
+             <td><%= @order.postage %>円</td>
+           </tr>
+           <tr>
+             <th>請求金額合計</th>
+             <td><%= @order.total_price.to_s(:delimited) %>円</td>
+           </tr>
+         </table>
         </div>
       </div>
     </div>
   </div>
+</div>

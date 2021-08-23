@@ -6,26 +6,18 @@ class Admin::OrdersController < ApplicationController
     @order_items = OrderItem.where(order_id: @order)
   end
   def update
-    binding.pry
     order = Order.find(params[:id])
     order_item = OrderItem.find_by(order_id: order.id)
+
+    if params[:order][:order_status] == "入金確認"
+       order_item.update(create_status: "製作待ち")
+    end
     order.update(order_params)
-    order_item.update(order_item_params)
     redirect_to request.referer
-  #   if OrderItem.find_by(order_id: order.id).create_status == "2"
-  #     order.order_status == "制作中"
-  #     order.update
-  # 	end
-
   end
-
 
   private
   def order_params
     params.require(:order).permit(:order_status)
-  end
-
-  def order_item_params
-    params.require(:order_item).permit(:create_status)
   end
 end
