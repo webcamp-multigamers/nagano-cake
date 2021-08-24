@@ -17,5 +17,58 @@
 
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+// require turbolinks
 //= require_tree .
+
+// カードをホバーしたときに文字を拡大する機能
+$(function mouseover(){
+    var mouse_on = {
+
+      paddingTop: 10,
+      paddingLeft: 10,
+      paddingRight: 10,
+  }
+  //mouseout時の値
+  var mouse_off = {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  }
+
+  $(".card").hover(function(){
+    $(this).animate(mouse_on, 200);
+  } ,function(){
+    $(this).animate(mouse_off, 200);
+  });
+});
+
+// noticeの表示に動きを作る
+$(function(){
+  $('.notice').delay(500).slideDown();
+});
+$(function(){
+  $('.notice').delay(5000).slideUp();
+});
+
+
+$('#rippleria').rippleria({
+  // aniamtion speed
+  duration: 750,
+  // custom easing effect
+  easing: 'ease-in'
+});
+
+// rippleria　＝　要素に波紋を表示させる
+$('#rippleria').click(function(e) {
+  e.preventDefault();
+
+  var randInt = function (min, max) {
+  var rand = min + Math.random() * (max - min)
+  rand = Math.round(rand);
+  return rand;
+};
+
+$(this).rippleria('changeColor',
+  'rgba('+randInt(0,100)+','+randInt(0,100)+','+randInt(0,100)+',0.'+randInt(3,5));
+});

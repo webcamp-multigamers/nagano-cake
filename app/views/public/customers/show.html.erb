@@ -1,6 +1,7 @@
-<h1>マイページ</h1>
+<div class="ml-5 mb-5 mr-5">
+<h1 class="mt-5 table-active">マイページ</h1>
 <div>登録情報　<%= link_to "編集する", edit_customer_path, class: "btn btn-success" %></div><br>
-<div class="col-lg-7">
+<div class="col-7 mt-5">
 <table class="table" rules="all" border="2">
   <tbody>
     <tr><td class="table-active" style="width:30%">氏名</td><td style="width:80%"><%=@customer.last_name %>　<%= @customer.first_name %></td></tr>
@@ -14,3 +15,4 @@
 </div>
 <div>配送先　　<%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></div><br>
 <div>注文履歴　<%= link_to "一覧を見る", orders_path, class: "btn btn-success" %></div><br>
+</div>
