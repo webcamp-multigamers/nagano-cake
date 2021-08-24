@@ -10,7 +10,7 @@ class Admin::OrdersController < ApplicationController
     order_item = OrderItem.find_by(order_id: order.id)
 
     if params[:order][:order_status] == "入金確認"
-       order_item.update(create_status: "製作待ち")
+       order_item.update_all(create_status: "製作待ち")
     end
     order.update(order_params)
     redirect_to request.referer
