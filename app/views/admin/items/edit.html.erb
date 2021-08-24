@@ -1,40 +1,49 @@
 <div class="container">
   <div class="row">
-    <h2 class="col-10 mt-5 mb-5 mx-auto active">商品編集</h2>
+    <h2 class="col-2 text-center table-active my-3">商品編集</h2>
   </div>
   <div class="row">
-      <div class="col-8 offset-4">
-        
-        <%= form_with model: @item, url:admin_item_path(@item.id), local:true do |f| %>
-      
-        <div class="mb-3">
-          <%= f.label :image, "商品画像" %>
-          <%= f.attachment_field :image %>
-        </div>
-        <div class="mb-3">
-          <%= f.label :name, "商品名" %>
-          <%= f.text_field :name, :size=>"30", placeholder: "商品名" %>
-        </div>
-        <div class="mb-3">
-          <%= f.label :introduction, "商品説明" %>
-          <%= f.text_area :introduction, size: 30, placeholder: "ここに説明文を記述します" %>
-        </div>
-        <div class="mb-3">
-          <%= f.label :genre, "ジャンル" %>
-          <%= f.collection_select(:genre_id, Genre.all, :id, :name, placeholder: "-- 選択してください --") %>
-        </div>　　　　　　　　　　　　　　　
-        <div class="mb-3">
-          <%= f.label :price, "税抜価格" %>
-          <%= f.text_field :price, placeholder: "1000" %>円
-        </div>
-        <div class="mb-3">
-          <%= f.label :is_sales_status, "販売ステータス" %>
-          <%= f.select :is_sales_status, {'販売中': true,'販売停止中': false}, required: true %>
-        </div>
-        <div class="mb-4">
-      	  <%= f.submit "変更を保存", class: "btn btn-success pull-right" %>
-        </div>
+    <div class="col-9 offset-3">
+      <%= form_with model: @item, url:admin_item_path(@item.id), local: true do |f| %>
+        <table class="table table-borderless">
+          <tbody>
+            <tr class="mb-3">
+              <td class="text-center"><%= f.label :image, "商品画像" %></td>
+              <td><%= f.attachment_field :image %></td>
+            </tr>
+            <tr class="mb-3">
+              <td class="text-center"><%= f.label :name, "商品名" %></td>
+              <td><%= f.text_field :name, size: 30,placeholder: "商品名" %></td>
+            </tr>
+            <tr class="mb-3">
+              <td class="text-center"><%= f.label :introduction, "商品説明" %></td>
+              <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %></td>
+            </tr>
+            <tr class="mb-3">
+              <td class="text-center"><%= f.label :genre, "ジャンル" %></td>
+              <td><%= f.collection_select(:genre_id, Genre.all, :id, :name, placeholder: "-- 選択してください --") %></td>
+            </tr>
+            <tr class="mb-3">
+              <td class="text-center"><%= f.label :price, "税抜価格" %></td>
+              <td><%= f.text_field :price, placeholder: "1000" %>円</td>
+            </tr>
+            <tr class="mb-3">
+              <td class="text-center">販売ステータス</td>
+              <td>
+                <%= f.label :is_sales_status, "販売中"%>
+                <%= f.radio_button :is_sales_status, 'true' %>
+                <%= f.label :is_sales_status, "販売中止中"%>
+                <%= f.radio_button :is_sales_status, 'false' %>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit '新規登録', class: "btn btn-success mb-3 offset-1" %></td>
+            </tr>
+          </tbody>
+        </table>
       <% end %>
     </div>
   </div>
 </div>
+

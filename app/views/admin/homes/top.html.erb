@@ -1,6 +1,6 @@
 <div class="container">
-  <h3 class="row my-3 table-active">注文履歴一覧</h3>
-  <table class="row table table-bordered">
+  <h3 class="col-3 text-center table-active my-3">注文履歴一覧</h3>
+  <table class="row table">
     <thead class="col-12">
       <tr class="row">
         <th class="col-3">購入日時</th>
@@ -12,12 +12,12 @@
     <% @orders.each do |order|%>
       <tbody class="col-12">
         <tr class="row">
-          <td class="col-3"><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %></td>
+          <td class="col-3"><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'), admin_order_path(order) %></td>
           <td class="col-3"><%= order.name %></td>
           <td class="col-3">
             <%= OrderItem.where(order_id: order.id).sum(:order_quantity) %>
           </td>
-          <td class="col-3 btn btn-primary btn-sm"><%= order.order_status %></td>
+          <td class="col-3"><%= order.order_status %></td>
         </tr>
       </tbody>
     <% end %>

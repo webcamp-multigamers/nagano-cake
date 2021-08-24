@@ -6,7 +6,7 @@
 		      <%= attachment_image_tag item, :image, :fill, 400,300, format:'jpeg', class: 'card-img-top' %>
 	  			<div class="card-body">
 		      <p class="card-title text-dark"><b><%= item.name %></b></p>
-		  		<p>￥<%= item.price %></p>
+		  		<p>￥<%= item.price.to_s(:delimited) %></p>
 	  			</div>
   			</div>
   		<%end%>
