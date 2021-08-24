@@ -50,3 +50,25 @@ $(function(){
 $(function(){
   $('.notice').delay(5000).slideUp();
 });
+
+
+$('#rippleria').rippleria({
+  // aniamtion speed
+  duration: 750,
+  // custom easing effect
+  easing: 'ease-in'
+});
+
+// rippleria　＝　要素に波紋を表示させる
+$('#rippleria').click(function(e) {
+  e.preventDefault();
+
+  var randInt = function (min, max) {
+  var rand = min + Math.random() * (max - min)
+  rand = Math.round(rand);
+  return rand;
+};
+
+$(this).rippleria('changeColor',
+  'rgba('+randInt(0,100)+','+randInt(0,100)+','+randInt(0,100)+',0.'+randInt(3,5));
+});
