@@ -15,9 +15,16 @@ class Public::OrdersController < ApplicationController
         order_item.item_id = cart.item_id
         order_item.save
       end
+      address_new = current_customer.addresses.new(address_params)
+      if address_new.save
+      else
+        @order = Order.new(order_params)
+        render :new
+      end
       redirect_to thanks_orders_path
       current_customer.cart_items.destroy_all
     else
+      @order = Order.new(order_params)
       render :new
     end
   end
@@ -34,7 +41,7 @@ class Public::OrdersController < ApplicationController
   def check
     @order = Order.new(order_params)
     if params[:order][:address_number] == "1"
-      @order.name = "#{current_customer.last_name}#{current_customer.first_name}"
+      @order.name = "#{current_customer.first_name}#{current_customer.last_name}"
       @order.address = current_customer.address
       @order.postal_code = current_customer.postal_code
     elsif params[:order][:address_number] == "2"
@@ -42,13 +49,7 @@ class Public::OrdersController < ApplicationController
       @order.address = Address.find(params[:order][:registered]).address
       @order.postal_code = Address.find(params[:order][:registered]).postal_code
     elsif params[:order][:address_number] == "3"
-      address_new = current_customer.addresses.new(address_params)
-      if address_new.save
-      else
-        render :new
-      end
     else
-      flash.now[:alert] = "情報を選択、入力してください。"
       render :new
     end
     @cart_items = current_customer.cart_items.all
