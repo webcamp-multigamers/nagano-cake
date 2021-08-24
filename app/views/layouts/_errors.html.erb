@@ -1,0 +1,14 @@
+<% if error_lists.errors.any? %>
+<div class="text-danger">
+  <% if 1 < error_lists.errors.count %>
+    <h3><%= error_lists.errors.count %> errors prohibited this from being saved:</h3>
+  <% else %>
+    <h3><%= error_lists.errors.count %> error prohibited this from being saved:</h3>
+  <% end %>
+  <ul>
+  <% error_lists.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>

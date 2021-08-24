@@ -1,48 +1,68 @@
 <div class="container">
-  <h2 class="row">注文情報入力</h2>
+  <div class="row my-3">
+    <h2 class="col-3 table-active text-center">注文情報入力</h2>
+  </div>
   <div class="row">
-    <%= form_with model: @order, url: check_orders_path, local: true do |f| %>
-    <div class="col-12">
-      <b>支払い方法</b>
-      <div>
-        <%= f.radio_button :payment, "クレジットカード" %>
-        <%= f.label :payment, "クレジットカード", value: "クレジットカード" %></br>
-        <%= f.radio_button :payment, "銀行振込" %>
-        <%= f.label :payment, "銀行振込", value: "銀行振込" %>
-      </div>
-    </div>
-    <div class="col-12">
-      <b>配送先</b>
-      <div>
-        <%= f.radio_button :address_number, 1 %>
-        <%= f.label :address_number_1 do %>
-        <%= "ご自身の住所" %>
-        <%= "〒#{current_customer.postal_code}#{current_customer.address}#{current_customer.last_name}#{current_customer.first_name}" %>
-        <% end %>
-      </div>
-      <div>
-        <%= f.radio_button :address_number, 2 %>
-        <%= f.label :address_number_2 do %>
-        <%= "登録先の住所" %>
-        <%= f.collection_select(:registered, current_customer.addresses.all, :id, :select_address, placeholder: "-- 選択してください --") %>
-        <% end %>
-      </div>
-      <div>
-        <%= f.radio_button :address_number, 3 %>
-        <%= f.label :address_number_3, "新しいお届け先" %>
-        <div>
-          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-          <%= f.text_field :postal_code, placeholder: "0000000" %></br>
-          <%= f.label :address, "住所" %>
-          <%= f.text_field :address, size: 50, placeholder: "東京都渋谷区代々木神園町0-0" %></br>
-          <%= f.label :name, "宛名" %>
-          <%= f.text_field :name, placeholder: "令和道子" %>
+    <%= form_with model: @order, url: check_orders_path, local: true, class: "col-12" do |f| %>
+      <div class="row">
+        <h3 class="col-12"><strong>支払い方法</strong></h3>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12">
+            <%= f.radio_button :payment, "クレジットカード", class: "ml-3" %>
+            <%= f.label :payment, "クレジットカード", value: "クレジットカード" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+            <%= f.radio_button :payment, "銀行振込", class: "ml-3" %>
+            <%= f.label :payment, "銀行振込", value: "銀行振込" %>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-12 text-center">
-      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
-    </div>
+      <div class="row">
+        <h3 class="col-12"><strong>配送先</strong></h3>
+        <div class="col-12 my-2">
+          <div class="row">
+            <div class="col-12">
+            <%= f.radio_button :address_number, 1, class: "ml-3" %>
+            <%= f.label :address_number_1 do %>
+            <%= "ご自身の住所" %>
+            <%= "〒#{current_customer.postal_code}#{current_customer.address}#{current_customer.last_name}#{current_customer.first_name}" %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <%= f.radio_button :address_number, 2, class: "ml-3" %>
+          <%= f.label :address_number_2, "登録先の住所" %>
+          <div class="row">
+            <div class="col-12 ml-5">
+            <%= f.collection_select(:registered, current_customer.addresses.all, :id, :select_address, placeholder: "-- 選択してください --") %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <%= f.radio_button :address_number, 3, class: "ml-3" %>
+          <%= f.label :address_number_3, "新しいお届け先" %>
+          <div class="row my-2">
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-3 ml-5 form-inline" %>
+          <%= f.text_field :postal_code, placeholder: "0000000", class: "col-3 form-control" %>
+          </div>
+          <div class="row my-2">
+          <%= f.label :address, "住所", class: "col-3 ml-5 form-inline" %>
+          <%= f.text_field :address, size: 50, placeholder: "東京都渋谷区代々木神園町0-0", class: "col-6 form-control" %>
+          </div>
+          <div class="row my-2">
+          <%= f.label :name, "宛名", class: "col-3 ml-5 form-inline" %>
+          <%= f.text_field :name, placeholder: "令和道子", class: "col-3 form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 text-center my-2">
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
 </div>
