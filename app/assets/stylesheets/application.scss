@@ -25,22 +25,12 @@
 
 header {
   z-index: 10;
-
 }
 
 .header-image {
-  // background-image: image-url("sweets_1.jpg");
   background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0));
-  // background-blend-mode:lighten;
   background-size: cover;
   background-position: 50% 70%;
-}
-
-.header-image {
-  // background-image: image-url("sweets_1.jpg");
-  background-size: cover;
-  background-position: 50% 70%;
-
 }
 
 .content {
