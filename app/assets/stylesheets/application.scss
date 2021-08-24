@@ -23,11 +23,14 @@
   justify-content: center;
 }
 
+header {
+  z-index: 10;
+}
 
 .header-image {
-  background-image: image-url("sweets.jpg");
+  background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0));
   background-size: cover;
-  background-position: 50% 70%
+  background-position: 50% 70%;
 }
 
 .content {
@@ -37,9 +40,9 @@
 }
 .footer {
   height: 70px;
-    background-image: image-url("sweets.jpg");
+  background-image: image-url("sweets_1.jpg");
   background-size: cover;
-  background-position: 50% 5%
+  background-position: 50% 5%;
 }
 
 .notice{
@@ -49,3 +52,30 @@
   margin : auto;
 }
 
+.slider {
+  height: 700px;
+
+  top: -100px;
+}
+
+.previews {
+  position: relative;
+}
+
+.wellcome {
+  position: absolute;
+  top: 150px;
+  left: 200px;
+  z-index: 1;
+  color: black;
+}
+
+.top-image1 {
+  background-image: url(cake_3.jpg);
+}
+.top-image2 {
+  background-image: url(cake_2.jpg);
+}
+.logo-image {
+  width: 300px;
+}
