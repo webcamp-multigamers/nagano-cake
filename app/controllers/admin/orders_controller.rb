@@ -13,6 +13,7 @@ class Admin::OrdersController < ApplicationController
        order_item.update(create_status: "製作待ち")
     end
     order.update(order_params)
+    flash[:notice] = "注文ステータスを更新しました！"
     redirect_to request.referer
   end
 

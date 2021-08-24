@@ -1,6 +1,6 @@
-<div class="container">
-  <%= render "layouts/errors", error_lists: @cart_item %>
-  <div class="row mt-5">
+<br>
+<div class="container mt-5">
+  <div class="row">
     <%= render 'public/homes/genres_search', genres: @genres %>
     <div class="col-4">
       <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg', class: 'img-fluid' %>

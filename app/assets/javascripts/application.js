@@ -51,6 +51,13 @@ $(function(){
   $('.notice').delay(5000).slideUp();
 });
 
+$(function(){
+  $('.alert').delay(500).slideDown();
+});
+$(function(){
+  $('.alert').delay(5000).slideUp();
+});
+
 
 $('#rippleria').rippleria({
   // aniamtion speed

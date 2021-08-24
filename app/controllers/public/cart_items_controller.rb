@@ -7,10 +7,12 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
     if @cart_item.save
+      flash[:notice] = "商品をカートに入れました！"
       redirect_to request.referer
     else
       @item = Item.find(@cart_item.item_id)
       @genres = Genre.all
+      flash.now[:alert] = "購入する個数を選択してください！"
       render "public/items/show"
     end
   end
