@@ -3,7 +3,6 @@ class Admin::GenresController < ApplicationController
 
   def index
     @genre = Genre.new
-    @genres = Genre.all
   end
 
   def create
@@ -11,8 +10,6 @@ class Admin::GenresController < ApplicationController
     if @genre.save
       redirect_to request.referer
     else
-      @genre = Genre.new
-      @genres = Genre.all
       render :index
     end
   end
