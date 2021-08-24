@@ -33,12 +33,20 @@
 .content {
   min-height: calc(100vh - 70px);
   background-image: image-url("urushi.png");
+  background-size: cover;
 }
 .footer {
   height: 70px;
     background-image: image-url("sweets.jpg");
   background-size: cover;
   background-position: 50% 5%
+}
+
+.notice{
+  position : absolute;
+  left: 0;
+  right: 0;
+  margin : auto;
 }
 
 .slider {
@@ -52,3 +60,4 @@
 .top-image2 {
   background-image: url(cake_2.jpg);
 }
+

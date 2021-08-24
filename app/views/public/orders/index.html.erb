@@ -1,25 +1,29 @@
-<div class="container">
+<div class="container p-0">
   <div class="row">
-    <h3 class="col-3 my-3 text-center table-active">注文履歴一覧</h3>
+    <h2 class="col-3 my-3 text-center table-active">注文履歴一覧</h2>
   </div>
-  <table class="row table table-bordered">
+  <table class="row table table-bordered small">
     <tbody class="col-12">
-      <tr class="row table-active">
-        <td class="col-1 px-0">注文日</td>
-        <td class="col-5 px-0">配送先</td>
-        <td class="col-2 px-0">注文商品</td>
-        <td class="col-1 px-0">支払い金額</td>
-        <td class="col-1 px-0">ステータス</td>
-        <td class="col-2 px-0">注文詳細</td>
+      <tr class="row">
+        <td class="col-1 table-active border-dark">注文日</td>
+        <td class="col-5 table-active border-left-0 border-dark">配送先</td>
+        <td class="col-2 table-active border-left-0 border-dark">注文商品</td>
+        <td class="col-1 table-active border-left-0 border-dark">支払い金額</td>
+        <td class="col-1 table-active border-left-0 border-dark">ステータス</td>
+        <td class="col-2 table-active border-left-0 border-dark">注文詳細</td>
       </tr>
       <% @orders.each do |order| %>
-      <tr class="row text-align-center">
-        <td class="col-1 p-0"><%= order.created_at.strftime("%Y/%m/%d") %></td>
-        <td class="col-5 p-0"><%= "〒#{order.postal_code}" %></br><%= order.address %></br><%= order.name %></td>
-        <td class="col-2 p-0">注文商品予定</td>
-        <td class="col-1 p-0"><%= order.total_price %></td>
-        <td class="col-1 p-0"><%= order.order_status %></td>
-        <td class="col-2 text-center p-0"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
+      <tr class="row">
+        <td class="col-1 border-top-0 border-dark"><%= order.created_at.strftime("%Y/%m/%d") %></td>
+        <td class="col-5 border-left-0 border-top-0 border-dark"><%= "〒#{order.postal_code}" %></br><%= order.address %></br><%= order.name %></td>
+        <td class="col-2 border-left-0 border-top-0 border-dark">
+          <% OrderItem.where(order_id: order.id).each do |order_item| %>
+            <%= Item.find(order_item.item_id).name %></br>
+          <% end %>
+        </td>
+        <td class="col-1 border-left-0 border-top-0 border-dark"><%= order.total_price %></td>
+        <td class="col-1 border-left-0 border-top-0 border-dark"><%= order.order_status %></td>
+        <td class="col-2 text-center border-left-0 border-top-0 border-dark"><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
       </tr>
       <% end %>
     </tbody>

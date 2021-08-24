@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-5">
-      <h3>商品新規登録</h3>
+      <h2 class="col-10 mt-5 mx-auto">商品新規登録</h2>
     </div>
   </div>
   <div class="row">
@@ -40,7 +40,7 @@
           <%= f.select :is_sales_status, {'販売中': true,'販売停止中': false}, required: true %>
         </div>
 
-        <div>
+        <div class="from-actions">
           <%= f.submit '新規登録', class: "btn btn-success" %>
         </div>
         
