@@ -1,15 +1,14 @@
+<%= render 'layouts/slide_show' %>
 <div class="container">
-	<div class="row mt-5">
+
+	<div class="row pb-5">
 		<%= render 'public/homes/genres_search', genres: @genres %>
 		<div class="col-9">
 			<!--画像を入れてください-->
-			<%= render 'layouts/slide_show' %>
 			<div class="new-item">
 				<h3 class="font-weight-bold">新着商品</h3>
-
 				<%= render 'public/homes/card_deck', items: @items %>
-
-				<%= link_to "すべての商品を見る＞", items_path, class: 'float-right' %>
+				<%= link_to "すべての商品を見る＞", items_path, class: 'float-right mt-2' %>
 			</div>
 		</div>
 	</div>
