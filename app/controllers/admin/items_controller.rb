@@ -12,9 +12,10 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] = "商品登録成功しました"
+      flash[:notice] = "新しい商品を作成しました！"
        redirect_to admin_item_path(@item.id)
     else
+      flash.now[:alert] = "すべての情報を、正しい形式で入力してください！"
       render :new
     end
   end
@@ -30,8 +31,10 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
+      flash[:notice] = "商品の変更を保存しました！"
        redirect_to admin_item_path(@item.id)
     else
+      flash.now[:alert] = "すべての情報を、正しい形式で入力してください！"
       render :edit
     end
   end

@@ -9,11 +9,11 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-      flash[:notice] = "新しい宛先を作成しました。"
+      flash[:notice] = "新しい宛先を作成しました！"
       redirect_to addresses_path
     else
       @addresses = current_customer.addresses.all
-      flash.now[:notice] = "情報を正しく入力してください。"
+      flash.now[:alert] = "情報を正しく入力してください！"
       render "index"
     end
   end
@@ -26,10 +26,10 @@ class Public::AddressesController < ApplicationController
     address = Address.find(params[:id])
     if address.customer_id == current_customer.id
       address.destroy
-      flash[:notice] = "アドレスを削除しました。"
+      flash[:notice] = "アドレスを削除しました！"
       redirect_to addresses_path
     else
-      flash[:notice] = "削除に失敗しました。"
+      flash[:alert] = "削除に失敗しました！"
       redirect_to addresses_path
     end
   end
@@ -37,10 +37,10 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-      flash[:notice] = "アドレス情報を更新しました。"
+      flash[:notice] = "アドレス情報を更新しました！"
       redirect_to addresses_path
     else
-      flash.now[:notice] = "情報を正しく入力してください。"
+      flash.now[:alert] = "情報を正しく入力してください！"
       render "edit"
     end
   end

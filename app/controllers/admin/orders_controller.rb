@@ -5,6 +5,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order)
   end
+  
   def update
     order = Order.find(params[:id])
     #　１件の情報を取り出すfind_byではなく、対応するレコードすべて取り出すwhereに変更
@@ -15,6 +16,7 @@ class Admin::OrdersController < ApplicationController
         order_item.update(create_status: "製作待ち")
       end
     order.update(order_params)
+    flash[:notice] = "注文ステータスを更新しました！"
     end
     redirect_to request.referer
   end

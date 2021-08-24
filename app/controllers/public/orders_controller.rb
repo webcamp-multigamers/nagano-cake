@@ -48,6 +48,7 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     else
+      flash.now[:alert] = "情報を選択、入力してください。"
       render :new
     end
     @cart_items = current_customer.cart_items.all
