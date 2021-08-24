@@ -12,6 +12,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:notice] = "商品登録成功しました"
        redirect_to admin_item_path(@item.id)
     else
       render :new
