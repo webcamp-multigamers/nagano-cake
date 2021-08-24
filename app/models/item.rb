@@ -3,11 +3,11 @@ class Item < ApplicationRecord
   has_many :cart_items
   has_many :order_items
   attachment :image
-  validates  :name, :price, :genre_id, :introduction, presence: true
+  validates  :name, :price, :genre_id, :introduction, :image_id, presence: true
   validates :is_sales_status, inclusion: {in: [true, false]}
 # 税込価格表示のメソッド
    def taxin_price
      (price*1.1).round
    end
-   
+
 end
