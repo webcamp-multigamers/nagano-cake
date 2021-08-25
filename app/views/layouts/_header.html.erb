@@ -1,5 +1,9 @@
 <header data-rippleria>
+  <% if current_page?(root_path) %>
+  <nav class="navbar navbar-expand-sm navbar-light header-image-top" style="height: 100px">
+  <% else %>
   <nav class="navbar navbar-expand-sm navbar-light header-image" style="height: 100px">
+  <% end %>
     <div class="container">
       <a class="navbar-brand logo-image" href="/"><%= image_tag('logo_transparent.png', class: "logo-image") %></a>
       <div>
