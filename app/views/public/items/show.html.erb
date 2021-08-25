@@ -24,9 +24,9 @@
           <%= link_to "カートから出す", cart_item_path(CartItem.find_by(customer_id: current_customer.id, item_id: @item)), method: :delete, class: "btn btn-danger" %>
           <% end %>
         <% end %>
-        <% else %>
-          <p class="col-7 text-danger text-center">現在販売を停止しております</p>
-        <% end %>
+      <% else %>
+        <p class="col-7 text-danger text-center">現在販売を停止しております</p>
+      <% end %>
       </div>
     </div>
   </div>
