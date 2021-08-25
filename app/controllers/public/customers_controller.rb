@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :move_to_signed_in
+  
 
   def show
     @customer = Customer.find(current_customer.id)

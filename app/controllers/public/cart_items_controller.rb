@@ -1,4 +1,7 @@
 class Public::CartItemsController < ApplicationController
+  before_action :move_to_signed_in
+
+
   def index
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
@@ -44,4 +47,9 @@ class Public::CartItemsController < ApplicationController
     params.require(:cart_item).permit(:quantity, :item_id)
   end
 
+  def move_to_signed_in
+    unless customer_signed_in?
+      redirect_to new_customer_session_path
+    end
+  end
 end
