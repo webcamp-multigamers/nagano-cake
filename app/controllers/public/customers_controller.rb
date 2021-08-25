@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :move_to_signed_in
 
   def show
     @customer = Customer.find(current_customer.id)
@@ -32,6 +33,12 @@ class Public::CustomersController < ApplicationController
   end
 
   private
+    def move_to_signed_in
+      unless customer_signed_in?
+        redirect_to new_customer_session_path
+      end
+    end
+
     def customer_params
       params.require(:customer).permit(:first_name,:last_name,
       :first_name_kana, :last_name_kana, :postal_code, :address,
