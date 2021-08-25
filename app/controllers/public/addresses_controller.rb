@@ -1,4 +1,5 @@
 class Public::AddressesController < ApplicationController
+  before_action :move_to_signed_in
 
   def index
     @address = Address.new
@@ -47,6 +48,12 @@ class Public::AddressesController < ApplicationController
 
 
   private
+  def move_to_signed_in
+    unless customer_signed_in?
+      redirect_to new_customer_session_path
+    end
+  end
+
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end
