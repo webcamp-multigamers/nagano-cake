@@ -3,9 +3,11 @@
   <table class="row table table-borderless">
       <tr>
         <th>購入者</th>
-        <%= link_to do %>
-          <td><%= @order.customer.last_name %> <%= @order.customer.first_name %></td>
+        <td>
+        <%= link_to admin_customer_path(@order.customer_id), class: "text-dark" do %>
+          <%= @order.customer.last_name %> <%= @order.customer.first_name %>
         <% end %>
+        </td>
       </tr>
       <tr>
         <th>注文日</th>
@@ -49,7 +51,7 @@
                 <td><%= Item.find(order_item.item_id).name %></td>
                 <td><%= order_item.item.taxin_price.to_s(:delimited) %></td>
                 <td><%= order_item.order_quantity %></td>
-                <td><%= (Item.find(order_item.item_id).taxin_price)*(order_item.order_quantity) %></td>
+                <td><%= ((Item.find(order_item.item_id).taxin_price)*(order_item.order_quantity)).to_s(:delimited) %></td>
                 <td>
                   <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
                     <%= f.select :create_status,["着手不可","製作待ち","製作中","製作完了"], selected: order_item.create_status %>
