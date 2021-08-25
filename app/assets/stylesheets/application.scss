@@ -28,6 +28,12 @@ header {
 }
 
 .header-image {
+  background-image: image-url("sweets.jpg");
+  background-size: cover;
+  background-position: 50% 70%;
+}
+
+.header-image-top {
   background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0));
   background-size: cover;
   background-position: 50% 70%;
@@ -38,22 +44,15 @@ header {
   background-image: image-url("urushi.png");
   background-size: cover;
 }
-.footer {
+footer {
   height: 70px;
-  background-image: image-url("sweets_1.jpg");
+  background-image: image-url("sweets.jpg");
   background-size: cover;
   background-position: 50% 5%;
+
 }
 
 .notice{
-  position : absolute;
-  left: 0;
-  right: 0;
-  margin : auto;
-}
-
-
-.alert{
   position : absolute;
   left: 0;
   right: 0;
@@ -87,3 +86,4 @@ header {
 .logo-image {
   width: 300px;
 }
+
