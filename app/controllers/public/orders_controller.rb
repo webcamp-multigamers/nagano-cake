@@ -41,7 +41,7 @@ class Public::OrdersController < ApplicationController
   def check
     @order = Order.new(order_params)
     if params[:order][:address_number] == "1"
-      @order.name = "#{current_customer.first_name}#{current_customer.last_name}"
+      @order.name = "#{current_customer.last_name}#{current_customer.first_name}"
       @order.address = current_customer.address
       @order.postal_code = current_customer.postal_code
     elsif params[:order][:address_number] == "2"
@@ -50,6 +50,7 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = Address.find(params[:order][:registered]).postal_code
     elsif params[:order][:address_number] == "3"
     else
+      flash.now[:alert] = "情報を選択、入力してください。"
       render :new
     end
     @cart_items = current_customer.cart_items.all
