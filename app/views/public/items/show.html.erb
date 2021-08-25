@@ -9,7 +9,7 @@
       <h2 class="row"><b><%= @item.name %></b></h2>
       <h5 class="row"><%= @item.introduction %></h5>
       <div class="row mt-5"><h3 class="col-12">¥<%= @item.taxin_price.to_s(:delimited) %> <span class="h6">(税込)</span></h3></div>
-      <% if @item.is_sales_status == "true" %>
+      <% if @item.is_sales_status == true %>
       <div class="row mt-4">
         <% if customer_signed_in? %>
           <% unless current_customer.cart_items.exists?(item_id: @item) %>
@@ -25,7 +25,7 @@
           <% end %>
         <% end %>
       <% else %>
-        <p class="col-7 text-danger text-center">現在販売を停止しております</p>
+        <p class="col-7 text-danger text-center">現在売り切れとなっております</p>
       <% end %>
       </div>
     </div>

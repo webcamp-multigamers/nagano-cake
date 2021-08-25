@@ -11,7 +11,7 @@ class Public::CartItemsController < ApplicationController
     @cart_item = current_customer.cart_items.new(cart_item_params)
     if @cart_item.save
       flash[:notice] = "商品をカートに入れました！"
-      redirect_to request.referer
+      redirect_to cart_items_path
     else
       @item = Item.find(@cart_item.item_id)
       @genres = Genre.all
