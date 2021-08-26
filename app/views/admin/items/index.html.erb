@@ -4,43 +4,36 @@
 			<div class="text-right col-2 mt-5 mx-auto">
 			  <%= link_to "+", new_admin_item_path, class: "btn btn-success btn-success btn-circle, border-radius: 50%" %>
 			</div>
-		</div>
-  </div>
-  <div clss=row>
-    <table class='table table-hover table-inverse'>
-      <thead class="table-active col-12">
-        <tr>
-          <th class="col-1">商品ID</th>
-          <th class="col-3">商品名</th>
-          <th class="col-2">税抜き価格</th>
-          <th class="col-2">ジャンル</th>
-          <th class="col-2">ステータス</th>
+	</div>
+  <table class='row table table-hover table-inverse'>
+    <thead class="table-active col-12">
+      <tr class="row">
+        <th class="col-2">商品ID</th>
+        <th class="col-4">商品名</th>
+        <th class="col-2">税抜き価格</th>
+        <th class="col-2">ジャンル</th>
+        <th class="col-2">ステータス</th>
+      </tr>
+    </thead>
+    <tbody class="col-12">
+      <% @items.each do |item| %>
+        <tr class="row">
+          <td class="col-2"><%= item.id %></td>
+          <td class="col-2"><%= link_to item.name, admin_item_path(item) %></td>
+          <td class="col-2">¥<%= item.price.to_s(:delimited) %></td>
+          <td class="col-4"><%= item.genre.name %></td>
+          <td class="col-2 sales_status">
+            <% if item.is_sales_status == true %>
+  		        <p class="text-success">販売中</p>
+            <% else %>
+              <p class="text-muted">売切れ</p>
+            <% end %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @items.each do |item| %>
-          <tr>
-            <td class="col-2"><%= item.id %></td>
-            <td class="col-2">
-              <%= link_to admin_item_path(item) do %>
-                <%= item.name %>
-              <% end %>
-            </td>
-            <td class="col-2">¥<%= item.price.to_s(:delimited) %></td>
-            <td class="col-2"><%= item.genre.name %></td>
-            <td class="col-2 sales_status">
-              <% if item.is_sales_status == true %>
-    		        <p class="text-success">販売中</p>
-              <% else %>
-                <p class="text-muted">売切れ</p>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div class="text-center">
-      <%= paginate @items %>
-    </div>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= paginate @items %>
   </div>
 </div>
