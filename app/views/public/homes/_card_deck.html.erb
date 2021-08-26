@@ -1,0 +1,15 @@
+<div class="row row-cols-4">
+	<% items.each do |item| %>
+	  <div class="col">
+	  	<%= link_to item_path(item) do %>
+		    <div class="card mb-4">
+		      <%= attachment_image_tag item, :image, :fill, 400,300, format:'jpeg', class: 'card-img-top' %>
+	  			<div class="card-body">
+		        <p class="card-title text-dark"><b><%= item.name %></b></p>
+		  		  <p>￥<%= item.price.to_s(:delimited) %></p>
+	  			</div>
+  			</div>
+  		<% end %>
+	  </div>
+	<% end %>
+</div>

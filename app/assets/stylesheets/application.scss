@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+.nav-item {
+	padding-left: 10px;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+header {
+  z-index: 10;
+}
+
+.header-image {
+  background-image: image-url("sweets.jpg");
+  background-size: cover;
+  background-position: 50% 70%;
+}
+
+.header-image-top {
+  background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0));
+  background-size: cover;
+  background-position: 50% 70%;
+}
+
+.content {
+  min-height: calc(100vh - 70px);
+  background-image: image-url("urushi.png");
+  background-size: cover;
+}
+footer {
+  height: 70px;
+  background-image: image-url("sweets.jpg");
+  background-size: cover;
+  background-position: 50% 5%;
+
+}
+
+.notice{
+  position : absolute;
+  left: 0;
+  right: 0;
+  margin : auto;
+}
+
+.alert{
+  position : absolute;
+  left: 0;
+  right: 0;
+  margin : auto;
+}
+
+.slider {
+  height: 700px;
+
+  top: -100px;
+}
+
+.previews {
+  position: relative;
+}
+
+.wellcome {
+  position: absolute;
+  top: 150px;
+  left: 200px;
+  z-index: 1;
+  color: black;
+}
+
+.top-image1 {
+  background-image: url(cake_3.jpg);
+}
+.top-image2 {
+  background-image: url(cake_2.jpg);
+}
+.logo-image {
+  width: 300px;
+}
+

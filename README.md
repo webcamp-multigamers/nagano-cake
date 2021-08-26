@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## DMM WEBCAMP チーム開発学習 ながのCAKE のECサイトデータです
 
-Things you may want to cover:
+### 実装中の機能
+- 記載してください
 
-* Ruby version
+### 実装されている機能
+- ジャンル
+  - 管理者のみジャンルの追加・編集が出来る
+- カート機能
+  - カートへの追加
+  - 数量変更が出来る
+  - 個別削除とカートを空にすることができる
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### デバッグ
+ - binding.pry 左を差し込むとサーバーの動作を確認しながら進めることが出来る

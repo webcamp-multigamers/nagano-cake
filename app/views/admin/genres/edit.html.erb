@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row my-3">
+    <h2 class="col-4 table-active">ジャンル編集</h2>
+  </div>
+  <!--ジャンル編集フォーム-->
+  <%= render "layouts/errors", error_lists: @genre %>
+  <div class="col-7">
+    <%= form_with model: @genre, url:admin_genre_path, local:true, class: "row my-5 forminline mx-auto" do |f| %>
+      <strong class="col-3"><%= f.label :name, "ジャンル名" %></strong>
+      <div class="col-5"><%= f.text_field :name, class: "form-control" %></div>
+      <%= f.submit "変更を保存", class: "btn btn-success col-3 offset-1" %>
+    <% end %>
+  </div>
+</div>

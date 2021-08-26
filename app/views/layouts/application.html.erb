@@ -5,11 +5,36 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+    <!--contentについてはcssで定義してあります。footerを最下部に配置するための定義です。-->
+    <div class="content">
+
+      <!--headetの定義-->
+      <header class="header">
+        <%= render 'layouts/header' %>
+      </header>
+
+      <!--フラッシュメッセージ表示領域-->
+      <% if flash[:notice] %>
+        <p class="bg-info text-center text-light notice"><%= flash[:notice] %></p>
+      <%end%>
+      <% if flash[:alert] %>
+        <p class="bg-danger text-center text-light alert"><%= flash[:alert] %></p>
+      <%end%>
+
+
+      <%= yield %>
+    </div>
+
+    <!--footerは画面の最下部に配置します。（詳細はapplication.scss参照）-->
+    <footer class="footer">
+      <%= render 'layouts/footer' %>
+    </footer>
+
   </body>
+
 </html>
