@@ -19,7 +19,7 @@ class Public::OrdersController < ApplicationController
         order_item.save
       end
       redirect_to thanks_orders_path
-      current_customer.cart_items.destroy_all
+      cart_items.destroy_all
     else
       @order = Order.new(order_params)
       render :new
@@ -42,14 +42,17 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.postal_code = current_customer.postal_code
     elsif params[:order][:address_number] == "2"
-      @order.name = Address.find(params[:order][:registered]).name
-      @order.address = Address.find(params[:order][:registered]).address
-      @order.postal_code = Address.find(params[:order][:registered]).postal_code
+      if Address.exists?(name: params[:order][:registered])
+        @order.name = Address.find(params[:order][:registered]).name
+        @order.address = Address.find(params[:order][:registered]).address
+        @order.postal_code = Address.find(params[:order][:registered]).postal_code
+      else
+        render :new
+      end
     elsif params[:order][:address_number] == "3"
       address_new = current_customer.addresses.new(address_params)
       if address_new.save
       else
-        @order = Order.new(order_params)
         render :new
       end
     else
